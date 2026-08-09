@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 import { GALLERY, GALLERY_CATEGORIES } from '../../constants/gallery'
 import type { GalleryItem } from '../../types'
 import { SectionHeader } from '../ui/SectionHeader'
+import { SmartImage } from '../ui/SmartImage'
 
 type Filter = (typeof GALLERY_CATEGORIES)[number]
 
@@ -11,11 +12,14 @@ function BeforeAfterSlider({ item }: { item: GalleryItem }) {
   const [pos, setPos] = useState(50)
   if (!item.before || !item.after) return null
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl select-none">
+    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl select-none">
+      <SmartImage src={item.after} alt={item.alt} className="absolute inset-0 w-full h-full object-cover" />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light"
+        className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
-      />
+      >
+        <SmartImage src={item.before} alt="Before" className="w-full h-full object-cover" />
+      </div>
       <div className="absolute inset-x-0 top-0 h-full pointer-events-none" style={{ left: `${pos}%` }}>
         <div className="absolute inset-y-0 -translate-x-1/2 w-px bg-white" style={{ left: 0 }} />
         <span className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center text-primary text-xs">
@@ -102,7 +106,13 @@ export function Gallery() {
                     className="group relative w-full overflow-hidden rounded-2xl block"
                     aria-label={`Open ${item.alt}`}
                   >
-                    <div className="aspect-[3/4] bg-gradient-to-br from-primary-light to-primary group-hover:scale-105 transition-transform duration-700" />
+                    <div className="relative aspect-[3/4]">
+                      <SmartImage
+                        src={item.image}
+                        alt={item.alt}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <span className="p-3 rounded-full bg-white/90 text-primary"><ZoomIn className="w-5 h-5" /></span>
@@ -145,8 +155,10 @@ export function Gallery() {
               className="max-h-[80vh] rounded-2xl overflow-hidden relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="h-[60vh] w-[85vw] max-w-4xl bg-gradient-to-br from-primary-light to-primary" />
+              <div className="relative h-[60vh] w-[85vw] max-w-4xl overflow-hidden rounded-2xl">
+              <SmartImage src={current.image} alt={current.alt} eager className="w-full h-full object-contain" />
               <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm">{current.alt}</p>
+            </div>
             </motion.div>
             <button
               className="absolute right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20"

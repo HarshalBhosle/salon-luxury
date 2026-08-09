@@ -4,6 +4,7 @@ import { Award, Gem, HeartHandshake, Target, Eye, ArrowRight } from 'lucide-reac
 import { Reveal } from '../animations/Reveal'
 import { SectionHeader } from '../ui/SectionHeader'
 import { Button } from '../ui/Button'
+import { SmartImage } from '../ui/SmartImage'
 
 const milestones = [
   { year: '2011', title: 'The Vision', text: 'Aurora Vance opens a single-chair atelier in Beverly Hills.' },
@@ -30,12 +31,12 @@ export function About() {
           <Reveal className="relative">
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden shadow-elegant">
-                <img src="/images/gallery/g4.jpg" alt="Maison Aurelle interior" loading="lazy" className="w-full h-full object-cover aspect-[4/5]" />
+                <SmartImage src="/images/gallery/g4.jpg" alt="Maison Aurelle interior" className="w-full h-full object-cover aspect-[4/5]" />
               </div>
-              <div className="absolute -bottom-8 -right-8 w-48 h-64 rounded-2xl overflow-hidden border-4 border-white shadow-glass">
-                <img src="/images/gallery/g9.jpg" alt="Relaxation suite" loading="lazy" className="w-full h-full object-cover" />
+              <div className="absolute -bottom-6 -right-4 sm:-right-8 w-40 h-52 sm:w-48 sm:h-64 rounded-2xl overflow-hidden border-4 border-white shadow-glass z-10">
+                <SmartImage src="/images/gallery/g9.jpg" alt="Relaxation suite" eager className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -top-6 -left-6 rounded-2xl px-6 py-4 glass-card border border-secondary/20">
+              <div className="absolute -top-6 -left-4 sm:-left-6 rounded-2xl px-6 py-4 glass-card border border-secondary/20 z-10">
                 <Award className="w-8 h-8 text-secondary mb-1" />
                 <p className="font-display text-lg text-primary">Award Winner</p>
                 <p className="text-xs text-primary/60">15+ Years of Excellence</p>

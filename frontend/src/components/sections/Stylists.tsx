@@ -4,6 +4,7 @@ import { InstagramIcon, FacebookIcon, TwitterIcon } from '../ui/SocialIcons'
 import { Link } from 'react-router-dom'
 import { STYLISTS } from '../../constants/stylists'
 import { SectionHeader } from '../ui/SectionHeader'
+import { SmartImage } from '../ui/SmartImage'
 
 const socialIcons = {
   instagram: InstagramIcon,
@@ -33,16 +34,11 @@ export function Stylists() {
               className="group relative rounded-2xl overflow-hidden bg-white/70 backdrop-blur-xl border border-primary/5 shadow-elegant hover:shadow-elegant-hover transition-all duration-500 hover:-translate-y-1.5"
             >
               <div className="relative aspect-[4/5] bg-gradient-to-br from-primary-light to-primary overflow-hidden">
-                {s.image ? (
-                  <img
-                    src={s.image}
-                    alt={s.name}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.25),transparent_60%)]" />
-                )}
+                <SmartImage
+                  src={s.image}
+                  alt={s.name}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
+                />
                 {s.featured && (
                   <span className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-gradient-to-r from-secondary to-secondary-light text-primary text-[10px] font-bold uppercase tracking-wider z-10">
                     Founder

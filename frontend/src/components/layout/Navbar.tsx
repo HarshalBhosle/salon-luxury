@@ -24,6 +24,13 @@ export function Navbar() {
   const { scrollYProgress } = useScroll()
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
 
+  const linkColor = scrolled
+    ? 'text-primary/80 hover:text-primary'
+    : 'text-white/80 hover:text-white'
+  const phoneColor = scrolled
+    ? 'text-primary/70 hover:text-secondary'
+    : 'text-white/80 hover:text-white'
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
@@ -74,10 +81,10 @@ export function Navbar() {
               <span className="font-display font-bold text-lg">M</span>
             </div>
             <div className="leading-none">
-              <span className="font-display text-xl tracking-wide text-primary">
+              <span className={cn('font-display text-xl tracking-wide', scrolled ? 'text-primary' : 'text-white')}>
                 Maison <span className="text-secondary">Aurelle</span>
               </span>
-              <span className="block text-[10px] uppercase tracking-[0.3em] text-primary/50 mt-1">
+              <span className={cn('block text-[10px] uppercase tracking-[0.3em] mt-1', scrolled ? 'text-primary/50' : 'text-white/70')}>
                 Luxury Salon
               </span>
             </div>
@@ -93,7 +100,7 @@ export function Navbar() {
                   onMouseLeave={() => setActiveMega(null)}
                 >
                   <button
-                    className="px-4 py-2 text-sm font-heading text-primary/80 hover:text-primary transition-colors flex items-center gap-1.5"
+                    className={cn('px-4 py-2 text-sm font-heading transition-colors flex items-center gap-1.5', linkColor)}
                     onClick={() => handleNavigate(item.href)}
                   >
                     {item.label}
@@ -126,7 +133,7 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="px-4 py-2 text-sm font-heading text-primary/80 hover:text-primary transition-colors relative group"
+                  className={cn('px-4 py-2 text-sm font-heading transition-colors relative group', linkColor)}
                 >
                   {item.label}
                   <span className="absolute bottom-1 left-4 right-4 h-px bg-secondary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -138,7 +145,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href={`tel:${SITE.phone.replace(/[^+\d]/g, '')}`}
-              className="hidden md:inline-flex items-center gap-2 text-sm text-primary/70 hover:text-secondary transition-colors"
+              className={cn('hidden md:inline-flex items-center gap-2 text-sm transition-colors', phoneColor)}
             >
               <Phone className="w-4 h-4" />
               {SITE.phone}
@@ -149,7 +156,10 @@ export function Navbar() {
             </Button>
 
             <button
-              className="lg:hidden w-11 h-11 rounded-full border border-primary/15 flex flex-col items-center justify-center gap-1.5 text-primary"
+              className={cn(
+                'lg:hidden w-11 h-11 rounded-full border flex flex-col items-center justify-center gap-1.5 transition-colors',
+                scrolled ? 'border-primary/15 text-primary' : 'border-white/40 text-white',
+              )}
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
             >

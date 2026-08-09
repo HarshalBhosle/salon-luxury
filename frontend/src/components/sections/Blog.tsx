@@ -2,6 +2,7 @@ import { Clock, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { BLOG_POSTS } from '../../constants/blog'
 import { SectionHeader } from '../ui/SectionHeader'
+import { SmartImage } from '../ui/SmartImage'
 
 export function Blog() {
   const [featured, ...rest] = BLOG_POSTS
@@ -26,7 +27,7 @@ export function Blog() {
             className="group relative rounded-3xl overflow-hidden min-h-[420px] block hover:-translate-y-1 transition-transform duration-500"
           >
             <div className="absolute inset-0 overflow-hidden">
-              <img src={featured.image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <SmartImage src={featured.image} alt="" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
             </div>
             <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full bg-secondary text-primary text-[10px] font-bold uppercase tracking-wider">
@@ -53,7 +54,7 @@ export function Blog() {
                 className="group rounded-3xl overflow-hidden border border-primary/5 bg-white/70 shadow-elegant hover:shadow-elegant-hover hover:-translate-y-1 transition-all duration-500 flex flex-col"
               >
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={post.image} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <SmartImage src={post.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <span className="text-xs text-secondary tracking-widest uppercase mb-2">{post.category}</span>
