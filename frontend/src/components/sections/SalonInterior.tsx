@@ -8,6 +8,7 @@ const slides = [
     id: 1,
     title: 'The Reception Lounge',
     text: 'A serene, candlelit welcome space designed to calm the senses from the moment you arrive.',
+    image: '/images/gallery/g4.jpg',
     hotspots: [
       { x: '25%', y: '35%', label: 'Signature Welcome Bar', icon: Sparkles },
     ],
@@ -16,6 +17,7 @@ const slides = [
     id: 2,
     title: 'Styling Suites',
     text: 'Private, mirror-lined ateliers with premium seating and ambient lighting.',
+    image: '/images/gallery/g6.jpg',
     hotspots: [
       { x: '70%', y: '40%', label: 'Champagne on arrival', icon: Sofa },
     ],
@@ -24,6 +26,7 @@ const slides = [
     id: 3,
     title: 'Aurelle Spa Room',
     text: 'A tranquil sanctuary for head and body therapies, bathed in soft golden light.',
+    image: '/images/gallery/g9.jpg',
     hotspots: [
       { x: '30%', y: '50%', label: 'Therapy Suite', icon: Footprints },
       { x: '60%', y: '60%', label: 'Relaxation Corner', icon: Sparkles },
@@ -64,6 +67,14 @@ export function SalonInterior() {
               transition={{ duration: 0.8 }}
               className="absolute inset-0"
             >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  ;(e.currentTarget as HTMLImageElement).style.display = 'none'
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
             </motion.div>
           </AnimatePresence>
